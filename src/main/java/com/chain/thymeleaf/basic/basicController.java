@@ -104,5 +104,10 @@ public class basicController {
         model.addAttribute("data", "Spring!");
         return "basic/operation";
     }
+
+    @GetMapping("/attribute")
+    public String attribute() {
+        return "basic/attribute";
+    }
 }
 
