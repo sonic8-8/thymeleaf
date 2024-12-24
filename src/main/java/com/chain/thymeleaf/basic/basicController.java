@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +52,17 @@ public class basicController {
         return "basic/variable";
     }
 
+    @Data
+    static class User {
+        private String username;
+        private int age;
+
+        public User(String username, int age) {
+            this.username = username;
+            this.age = age;
+        }
+    }
+
     @GetMapping("/basic-objects")
     public String basicObjects(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         session.setAttribute("sessionData", "Hello Session");
@@ -67,15 +79,10 @@ public class basicController {
         }
     }
 
-    @Data
-    static class User {
-        private String username;
-        private int age;
-
-        public User(String username, int age) {
-            this.username = username;
-            this.age = age;
-        }
+    @GetMapping("/date")
+    public String date(Model model) {
+        model.addAttribute("localDateTime", LocalDateTime.now());
+        return "basic/date";
     }
 }
 
